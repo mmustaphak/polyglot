@@ -7,7 +7,7 @@ export default function Main(): React.JSX.Element {
 
   const renderedOptions = langOptions.map((lang) => (
     <div key={lang.id} className="flex gap-x-2">
-      <input type="radio" name="language" value={lang.value} />
+      <input type="radio" name="language" value={lang.value} required />
       <label className="flex gap-2">
         <p className="text-xl font-bold">{lang.value}</p>
         <img className="border border-gray-500" src={lang.img} alt=" " />
@@ -15,9 +15,12 @@ export default function Main(): React.JSX.Element {
     </div>
   ));
 
-
   if (formState?.error) {
-    return <h1 className="text-center text-2xl">Error: {formState.error},<br/> Please refresh the page..</h1>;
+    return (
+      <h1 className="text-center text-2xl">
+        Error: {formState.error},<br /> Please refresh the page..
+      </h1>
+    );
   }
 
   return (
@@ -34,6 +37,7 @@ export default function Main(): React.JSX.Element {
         placeholder="How are you?"
         value={formState?.prompt}
         disabled={Boolean(formState?.message)}
+        required
       ></textarea>
 
       {formState === null && !isPending && (
