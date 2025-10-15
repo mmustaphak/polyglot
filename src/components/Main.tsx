@@ -15,8 +15,9 @@ export default function Main(): React.JSX.Element {
     </div>
   ));
 
-  if (!formState?.error) {
-    return <h1 className="text-center text-2xl">An Error Occurred Please refresh the page..</h1>;
+
+  if (formState?.error) {
+    return <h1 className="text-center text-2xl">Error: {formState.error},<br/> Please refresh the page..</h1>;
   }
 
   return (
@@ -31,7 +32,7 @@ export default function Main(): React.JSX.Element {
         className="min-h-24 w-full bg-[#EFF0F4] p-2.5 font-semibold placeholder:text-[#333333]"
         name="text"
         placeholder="How are you?"
-        value={formState?.message}
+        value={formState?.prompt}
         disabled={Boolean(formState?.message)}
       ></textarea>
 
